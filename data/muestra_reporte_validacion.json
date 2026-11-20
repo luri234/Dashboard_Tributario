@@ -1,0 +1,31 @@
+{
+  "archivo_entrada": "data/muestra.csv",
+  "archivo_salida": "data/muestra.json",
+  "codificacion_usada": "latin-1",
+  "filas_leidas": 20,
+  "registros_validos": 20,
+  "filas_rechazadas": 0,
+  "detalle_rechazadas": [],
+  "valores_vacios_por_columna": {},
+  "valores_cero": 1,
+  "valores_negativos": 0,
+  "filas_duplicadas_exactas": 0,
+  "textos_con_espacios_corregidos": 0,
+  "filas_con_posible_error_de_codificacion": 0,
+  "cantones_en_mas_de_una_provincia": {},
+  "total_cantones_en_mas_de_una_provincia": 0,
+  "valores_distintos": {
+    "MES": 1,
+    "GRUPO_IMPUESTO": 5,
+    "IMPUESTO": 8,
+    "TIPO_CONTRIBUYENTE": 3,
+    "PROVINCIA": 12,
+    "CANTON": 17
+  },
+  "suma_valor_recaudado": 371143.46,
+  "validacion_json": {
+    "valido": true,
+    "registros_en_json": 20,
+    "errores": []
+  }
+}
