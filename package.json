@@ -1,7 +1,7 @@
 {
-  "name": "dashboard-tributario",
+  "name": "dashboard-tributario-sprint2",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.3.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },
