@@ -1,75 +1,27 @@
-# React + TypeScript + Vite
+# Dashboard Tributario 2024 — Entrega 1
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Prototipo de componentes e interfaces de Sprint 2, creado con React,
+TypeScript y Material UI. Los indicadores y visualizaciones usan exclusivamente
+datos ficticios (`src/mocks/dashboard.ts`); **no son cifras oficiales del SRI**.
 
-Currently, two official plugins are available:
+Vista publicada: https://luri234.github.io/Dashboard_Tributario/
+El contenido publicado se encuentra en la rama `gh-pages`; este repositorio
+no tiene todavía un flujo de despliegue automático desde `main`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```powershell
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+En el navegador, cambia Provincia, Tipo de contribuyente o Mes: el estado
+compartido actualiza los indicadores, gráficos y detalle sin recargar la página.
+En DevTools, prueba también una anchura inferior a 768 px: los filtros,
+indicadores y gráficos se apilan, y el detalle cambia de tabla a tarjetas.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```powershell
+npm run lint
+npm run build
 ```
+
+Esta entrega no carga el JSON completo ni se conecta a Firebase. Los datos
+reales, la preagregación y la carga remota se incorporarán en entregas futuras.

@@ -18,5 +18,11 @@ export const theme = createTheme({
   components: {
     MuiCard: { styleOverrides: { root: { border: '1px solid #e0e8f0', boxShadow: 'none' } } },
     MuiButtonBase: { defaultProps: { disableRipple: false } },
+    MuiTableCell: {
+      styleOverrides: {
+        head: { color: '#405771', fontWeight: 700 },
+        root: { borderBottomColor: '#e0e8f0' },
+      },
+    },
   },
 })
