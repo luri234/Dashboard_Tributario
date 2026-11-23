@@ -1,10 +1,15 @@
-import { Box, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
+import { DashboardHeader } from './components/layout/DashboardHeader'
+import { DashboardLayout } from './components/layout/DashboardLayout'
 
 export default function App() {
   return (
-    <Box component="main" sx={{ p: 4 }}>
-      <Typography variant="h4">Recaudación tributaria 2024</Typography>
-      <Typography color="text.secondary">Interfaz en construcción · datos de ejemplo</Typography>
-    </Box>
+    <DashboardLayout
+      header={<DashboardHeader />}
+      filters={<Typography color="text.secondary">Filtros en construcción</Typography>}
+      kpis={<Typography color="text.secondary">Indicadores en construcción</Typography>}
+      charts={<Typography color="text.secondary">Gráficos en construcción</Typography>}
+      detail={<Typography color="text.secondary">Detalle en construcción</Typography>}
+    />
   )
 }
