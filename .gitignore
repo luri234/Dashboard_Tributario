@@ -11,6 +11,13 @@ node_modules
 dist
 dist-ssr
 *.local
+.agents/
+.claude/
+firebase_importar.json
+recaudacion_firebase.json
+GUIA_SPRINT2.md
+GUIA_SPRINT2.html
+Entrega1_Sprint2_Grupo.zip
 
 # Editor directories and files
 .vscode/*
