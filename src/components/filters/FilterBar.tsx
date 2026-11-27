@@ -11,12 +11,12 @@ interface Props {
 export function FilterBar({ filters, options, onChange }: Props) {
   return (
     <Grid container spacing={1.5} component="section" aria-label="Filtros de recaudación">
-      <Grid size={{ xs: 6, md: 4 }}>
+      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <FilterSelect id="provincia" label="Provincia" allLabel="Todas"
           value={filters.provincia} options={options.provincias}
           onChange={(provincia) => onChange({ ...filters, provincia })} />
       </Grid>
-      <Grid size={{ xs: 6, md: 4 }}>
+      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <FilterSelect id="tipo" label="Tipo de contribuyente" allLabel="Todos"
           value={filters.tipo} options={options.tipos}
           onChange={(tipo) => onChange({ ...filters, tipo })} />

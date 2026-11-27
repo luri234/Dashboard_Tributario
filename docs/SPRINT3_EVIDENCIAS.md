@@ -48,7 +48,7 @@ Fragmento del hook `useTaxRecords.ts` (se omite solo la línea de limpieza
 `return () => { active = false }`, que aparece al final del archivo).
 
 Repositorio: https://github.com/luri234/Dashboard_Tributario
-SHA de Sprint 3 en `main`: **[Pegar el SHA del commit de integración tras el merge]**
+SHA de integración de Sprint 3 en `main`: `1693cd87f8547bdae081475c41eab3f2d4d8d40a`
 
 ## Capturas que debe hacer el equipo
 
@@ -70,6 +70,15 @@ SHA de Sprint 3 en `main`: **[Pegar el SHA del commit de integración tras el me
    como prueba de conexión.
 4. **Git:** tras integrar Sprint 3, abre la pestaña Commits de GitHub y copia
    el SHA exacto del commit correspondiente en la sección del reporte.
+
+Para la evidencia **móvil**, DevTools → barra de dispositivos → **Responsive**
+→ ancho **390** y alto **844**. Esa es la medida de la ventana, no de toda la
+página: el dashboard continúa verticalmente y es normal desplazarse para ver
+gráficos y detalle. En el menú de DevTools (**⋮**) elige
+**Capture a full size screenshot** para obtener una sola imagen de toda la
+página (su altura será mayor que 844 px). Si se exigen capturas de exactamente
+390 × 844, toma varias vistas al desplazarte y numéralas como parte superior,
+gráficos y detalle; no las presentes como una sola captura completa.
 
 ## Comprobaciones antes de capturar
 
