@@ -1,27 +1,53 @@
-# Dashboard Tributario 2024 — Entrega 1
+# Dashboard Tributario 2024
 
-Prototipo de componentes e interfaces de Sprint 2, creado con React,
-TypeScript y Material UI. Los indicadores y visualizaciones usan exclusivamente
-datos ficticios (`src/mocks/dashboard.ts`); **no son cifras oficiales del SRI**.
+Dashboard académico en React, TypeScript y Material UI con datos abiertos del
+Servicio de Rentas Internas de Ecuador. Los datos se consultan desde Firebase
+Realtime Database y se filtran sin recargar la página.
 
-Vista publicada: https://luri234.github.io/Dashboard_Tributario/
-El contenido publicado se encuentra en la rama `gh-pages`; este repositorio
-no tiene todavía un flujo de despliegue automático desde `main`.
+## Desarrollo local
 
 ```powershell
 npm ci
+Copy-Item .env.example .env.local
+notepad .env.local
 npm run dev
 ```
 
-En el navegador, cambia Provincia, Tipo de contribuyente o Mes: el estado
-compartido actualiza los indicadores, gráficos y detalle sin recargar la página.
-En DevTools, prueba también una anchura inferior a 768 px: los filtros,
-indicadores y gráficos se apilan, y el detalle cambia de tabla a tarjetas.
+En `.env.local`, configura `VITE_DATA_SOURCE=firebase` y completa las variables
+`VITE_FIREBASE_*` de la aplicación web en Firebase. Vite debe reiniciarse al
+modificar el archivo. La página muestra **Datos desde Firebase** al usar la base,
+o **Muestra local** si `VITE_DATA_SOURCE=local`. La muestra se importa de
+`data/muestra.json` y **no** representa el total nacional. Nunca se sube
+`.env.local` a Git.
+
+La app lee `/recaudacion_2024` una vez al cargar. Esta ruta contiene **24 423
+combinaciones preagregadas** derivadas de los **665 184 registros** del JSON
+original de Sprint 1. Así se evita enviar más de 200 MB al navegador. La
+preagregación se genera sin modificar los datos originales:
+
+```powershell
+python scripts/preparar_firebase.py data/recaudacion_2024.json recaudacion_firebase.json
+```
+
+Importa el resultado dentro del nodo `/recaudacion_2024` de Realtime Database;
+no lo añadas al repositorio. Los importes se almacenan en USD y se convierten
+a millones únicamente para mostrarlos. Las reglas de Firebase determinan quién
+puede leer el nodo; la configuración web no es una credencial de administrador.
+
+## Verificación y entrega
 
 ```powershell
 npm run lint
+npm test
 npm run build
 ```
 
-Esta entrega no carga el JSON completo ni se conecta a Firebase. Los datos
-reales, la preagregación y la carga remota se incorporarán en entregas futuras.
+Consulta [docs/SPRINT3_EVIDENCIAS.md](docs/SPRINT3_EVIDENCIAS.md) para las
+capturas y el texto de la sección de Firebase en el reporte.
+
+El workflow `.github/workflows/deploy.yml` compila desde `main` y publica
+`dist/` en la rama `gh-pages`, que es la fuente actual de GitHub Pages. Necesita
+permiso de escritura para GitHub Actions y los cinco secretos `VITE_FIREBASE_*`
+indicados en `.env.example`.
+Esas variables forman parte del cliente web compilado, no son claves de
+administrador. Sitio: https://luri234.github.io/Dashboard_Tributario/

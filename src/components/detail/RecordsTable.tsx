@@ -1,12 +1,12 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import type { DetailRow } from '../../types/dashboard'
-import { months } from '../../mocks/dashboard'
+import { MONTH_SHORT } from '../../utils/dashboard'
 import { formatMillions, formatPercent } from '../../utils/format'
 
 export function RecordsTable({ rows }: { rows: DetailRow[] }) {
   return (
     <TableContainer>
-      <Table size="small" aria-label="Detalle de recaudación de ejemplo">
+      <Table size="small" aria-label="Detalle de recaudación">
         <TableHead>
           <TableRow sx={{ bgcolor: '#f3f7fb' }}>
             {['Mes', 'Impuesto', 'Provincia', 'Tipo de contribuyente', 'Valor USD M', '% del total'].map((label) => (
@@ -18,7 +18,7 @@ export function RecordsTable({ rows }: { rows: DetailRow[] }) {
         <TableBody>
           {rows.map((row) => (
             <TableRow key={`${row.mes}/${row.impuesto}/${row.provincia}/${row.tipo}`}>
-              <TableCell>{months[row.mes - 1]}</TableCell>
+              <TableCell>{MONTH_SHORT[row.mes - 1] ?? row.mesNombre}</TableCell>
               <TableCell>{row.impuesto}</TableCell>
               <TableCell>{row.provincia}</TableCell>
               <TableCell>{row.tipo}</TableCell>
