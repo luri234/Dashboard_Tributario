@@ -24,7 +24,7 @@ export function MonthlyLineChart({ points, selectedMonth }: Props) {
         {points.length === 0 ? <Typography sx={{ py: 4 }} color="text.secondary">Sin datos para esta selección</Typography> : (
           <Box sx={{ mt: 2 }}>
             <svg viewBox="0 0 620 240" width="100%" role="img"
-              aria-label={`Recaudación mensual de ejemplo. ${points.map((p) => `${p.label}: ${formatMillions(p.valor)}`).join('; ')}`}>
+              aria-label={`Recaudación mensual. ${points.map((p) => `${p.label}: ${formatMillions(p.valor)}`).join('; ')}`}>
               {[0, 0.5, 1].map((part) => (
                 <g key={part}>
                   <line x1="42" x2="586" y1={y(part * max, max)} y2={y(part * max, max)}

@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, Stack, Typography } from '@mui/material'
 import type { DetailRow } from '../../types/dashboard'
-import { months } from '../../mocks/dashboard'
+import { MONTH_SHORT } from '../../utils/dashboard'
 import { formatMillions, formatPercent } from '../../utils/format'
 
 export function RecordsCardList({ rows }: { rows: DetailRow[] }) {
@@ -17,7 +17,7 @@ export function RecordsCardList({ rows }: { rows: DetailRow[] }) {
             </Stack>
             <Box sx={{ mt: 1 }}>
               <Typography color="text.secondary" variant="caption" sx={{ overflowWrap: 'anywhere' }}>
-                {months[row.mes - 1]} · {row.provincia} · {row.tipo}
+                {MONTH_SHORT[row.mes - 1] ?? row.mesNombre} · {row.provincia} · {row.tipo}
               </Typography>
             </Box>
             <Typography color="secondary.main" variant="caption" display="block">

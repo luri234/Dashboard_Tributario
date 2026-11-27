@@ -1,6 +1,6 @@
 import { Box, Chip, Stack, Typography } from '@mui/material'
 
-export function DashboardHeader() {
+export function DashboardHeader({ source }: { source: 'local' | 'firebase' }) {
   return (
     <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between"
       alignItems={{ xs: 'flex-start', sm: 'center' }} spacing={1.5}>
@@ -15,7 +15,8 @@ export function DashboardHeader() {
           </Typography>
         </Box>
       </Stack>
-      <Chip label="Datos de ejemplo" size="small" color="secondary" variant="outlined" />
+      <Chip label={source === 'firebase' ? 'Datos desde Firebase' : 'Muestra local'}
+        size="small" color="secondary" variant="outlined" />
     </Stack>
   )
 }
