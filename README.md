@@ -45,8 +45,9 @@ npm run build
 Consulta [docs/SPRINT3_EVIDENCIAS.md](docs/SPRINT3_EVIDENCIAS.md) para las
 capturas y el texto de la sección de Firebase en el reporte.
 
-El workflow `.github/workflows/deploy.yml` publica `dist/` en GitHub Pages al
-actualizar `main`; necesita que Pages use **GitHub Actions** y que estén
-configurados los cinco secretos `VITE_FIREBASE_*` indicados en `.env.example`.
+El workflow `.github/workflows/deploy.yml` compila desde `main` y publica
+`dist/` en la rama `gh-pages`, que es la fuente actual de GitHub Pages. Necesita
+permiso de escritura para GitHub Actions y los cinco secretos `VITE_FIREBASE_*`
+indicados en `.env.example`.
 Esas variables forman parte del cliente web compilado, no son claves de
 administrador. Sitio: https://luri234.github.io/Dashboard_Tributario/
