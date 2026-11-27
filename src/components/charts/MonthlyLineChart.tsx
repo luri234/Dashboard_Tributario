@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Stack, Typography } from '@mui/material'
+import { Box, Card, CardContent, Stack, Typography, useMediaQuery, useTheme } from '@mui/material'
 import type { MonthlyPoint } from '../../types/dashboard'
 import { formatMillions } from '../../utils/format'
 
@@ -7,10 +7,15 @@ interface Props {
   selectedMonth: number | null
 }
 
-const x = (index: number) => 42 + index * 48
-const y = (value: number, max: number) => 195 - value / max * 155
-
 export function MonthlyLineChart({ points, selectedMonth }: Props) {
+  const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const left = mobile ? 30 : 42
+  const right = mobile ? 329 : 586
+  const bottom = mobile ? 165 : 195
+  const chartHeight = mobile ? 125 : 155
+  const x = (index: number) => left + index * (mobile ? 27 : 48)
+  const y = (value: number, max: number) => bottom - value / max * chartHeight
   const max = Math.max(1, ...points.map((point) => point.valor))
   const path = points.map((point, i) => `${i ? 'L' : 'M'} ${x(i)} ${y(point.valor, max)}`).join(' ')
 
@@ -23,13 +28,13 @@ export function MonthlyLineChart({ points, selectedMonth }: Props) {
         </Stack>
         {points.length === 0 ? <Typography sx={{ py: 4 }} color="text.secondary">Sin datos para esta selección</Typography> : (
           <Box sx={{ mt: 2 }}>
-            <svg viewBox="0 0 620 240" width="100%" role="img"
+            <svg viewBox={mobile ? '0 0 340 210' : '0 0 620 240'} width="100%" role="img"
               aria-label={`Recaudación mensual. ${points.map((p) => `${p.label}: ${formatMillions(p.valor)}`).join('; ')}`}>
               {[0, 0.5, 1].map((part) => (
                 <g key={part}>
-                  <line x1="42" x2="586" y1={y(part * max, max)} y2={y(part * max, max)}
+                  <line x1={left} x2={right} y1={y(part * max, max)} y2={y(part * max, max)}
                     stroke="#dce6f0" strokeDasharray="4 4" />
-                  <text x="34" y={y(part * max, max) + 4} textAnchor="end"
+                  <text x={mobile ? 25 : 34} y={y(part * max, max) + 4} textAnchor="end"
                     fill="#62768c" fontSize="12">{(part * max / 1_000_000).toFixed(0)}</text>
                 </g>
               ))}
@@ -42,9 +47,9 @@ export function MonthlyLineChart({ points, selectedMonth }: Props) {
                     stroke={point.mes === selectedMonth ? '#087d80' : '#1463b6'} strokeWidth="2.5">
                     <title>{point.label}: {formatMillions(point.valor)}</title>
                   </circle>
-                  <text x={x(index)} y="225" textAnchor="middle"
-                    fill={point.mes === selectedMonth ? '#087d80' : '#62768c'}
-                    fontSize="12" fontWeight={point.mes === selectedMonth ? 700 : 400}>{point.label}</text>
+                   <text x={x(index)} y={mobile ? 194 : 225} textAnchor="middle"
+                     fill={point.mes === selectedMonth ? '#087d80' : '#62768c'}
+                     fontSize={mobile ? 11 : 12} fontWeight={point.mes === selectedMonth ? 700 : 400}>{point.label}</text>
                 </g>
               ))}
             </svg>
