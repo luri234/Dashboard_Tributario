@@ -1,11 +1,12 @@
 {
-  "name": "dashboard-tributario-sprint2",
+  "name": "dashboard-tributario",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "test": "node --experimental-strip-types --test tests/dashboard.test.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

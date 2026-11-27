@@ -38,10 +38,15 @@ puede leer el nodo; la configuración web no es una credencial de administrador.
 
 ```powershell
 npm run lint
+npm test
 npm run build
 ```
 
 Consulta [docs/SPRINT3_EVIDENCIAS.md](docs/SPRINT3_EVIDENCIAS.md) para las
 capturas y el texto de la sección de Firebase en el reporte.
 
-Sitio publicado: https://luri234.github.io/Dashboard_Tributario/
+El workflow `.github/workflows/deploy.yml` publica `dist/` en GitHub Pages al
+actualizar `main`; necesita que Pages use **GitHub Actions** y que estén
+configurados los cinco secretos `VITE_FIREBASE_*` indicados en `.env.example`.
+Esas variables forman parte del cliente web compilado, no son claves de
+administrador. Sitio: https://luri234.github.io/Dashboard_Tributario/
