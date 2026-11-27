@@ -1,4 +1,4 @@
-name: Publicar dashboard
+name: Verificar dashboard
 
 on:
   push:
@@ -6,24 +6,16 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-
-concurrency:
-  group: github-pages
-  cancel-in-progress: false
+  contents: read
 
 jobs:
-  deploy:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          path: sitio
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
           cache: npm
       - run: npm ci
       - run: npm run lint
@@ -44,16 +36,3 @@ jobs:
             fi
           done
           npm run build
-      - name: Publicar en la rama gh-pages
-        run: |
-          cp dist/index.html sitio/index.html
-          mkdir -p sitio/assets
-          cp dist/assets/* sitio/assets/
-          cd sitio
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html assets
-          if ! git diff --cached --quiet; then
-            git commit -m "Publica dashboard desde main"
-            git push origin HEAD:gh-pages
-          fi

@@ -45,9 +45,13 @@ npm run build
 Consulta [docs/SPRINT3_EVIDENCIAS.md](docs/SPRINT3_EVIDENCIAS.md) para las
 capturas y el texto de la sección de Firebase en el reporte.
 
-El workflow `.github/workflows/deploy.yml` compila desde `main` y publica
-`dist/` en la rama `gh-pages`, que es la fuente actual de GitHub Pages. Necesita
-permiso de escritura para GitHub Actions y los cinco secretos `VITE_FIREBASE_*`
-indicados en `.env.example`.
+El workflow `.github/workflows/verify.yml` ejecuta lint, pruebas y build en
+`main`; usa los cinco secretos `VITE_FIREBASE_*` indicados en `.env.example`.
+Pages está configurado para servir la rama `gh-pages`: por ahora, publicar una
+nueva versión requiere copiar el build a esa rama y hacer push con una cuenta
+del equipo. Los commits creados con el `GITHUB_TOKEN` de Actions **no disparan**
+el build de Pages cuando la fuente es una rama. Para automatizar el despliegue
+en el futuro, la administradora del repositorio debe cambiar la fuente de
+Pages a **GitHub Actions** y configurar un workflow de despliegue de artefactos.
 Esas variables forman parte del cliente web compilado, no son claves de
 administrador. Sitio: https://luri234.github.io/Dashboard_Tributario/
